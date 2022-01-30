@@ -1,0 +1,19 @@
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    let currenttitle = urlParams.get('term');
+
+    $.ajax({
+        url:"https://itunes.apple.com/search",
+        data:{term:currenttitle,limit:2},
+        type:"GET",
+        dataType: "jsonp",
+        success: function(data, dataType){
+                var results = data.results;
+                var imgurl = results[0]['artworkUrl100'];
+                currentcover = imgurl.replace("100x100", "600x600");
+
+               window.location.replace(currentcover);
+        }
+    })
+</script>
